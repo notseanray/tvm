@@ -1,0 +1,21 @@
+[package]
+name = "tvm"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+derive_more = { version = "1.0.0", features = ["add"] }
+
+#[build]
+#rustflags = ["-Z", "threads=16"]
+
+[profile.dev]
+debug = true
+opt-level = 1
+
+[profile.release]
+codegen-units = 1       # better optimizations
+opt-level = 3
+overflow-checks = false
+lto = "fat"
+strip = "symbols"
